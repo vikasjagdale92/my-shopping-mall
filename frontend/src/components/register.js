@@ -17,6 +17,7 @@ class Register extends Component {
   }
 
   handleChange = event => {
+    // this.props.checkErrorMsg({ [event.target.name]: event.target.value });
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -29,9 +30,9 @@ class Register extends Component {
   };
 
   render() {
-    const { loading, errors } = this.props.allState.data;
+    const { loading, errors } = this.props.allState.errors;
     let val;
-    loading === "Loading..." ? (val = loading) : (val = "Submit");
+    loading === "Loading..." ? (val = loading) : (val = "Sign Up");
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">

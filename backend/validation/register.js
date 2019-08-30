@@ -5,13 +5,15 @@ const isEmpty = require("./is-empty");
 
 module.exports = function validateRegisterInput(data) {
   let errors = {};
-  console.log("data.password_confirm -----> ", data.password_confirm);
-  //   data.name = !isEmpty(data.name) ? data.name : "";
-  //   console.log("validation register js---> ", !isEmpty(data.name));
-  //   data.email = !isEmpty(data.email) ? data.email : "";
-  //   data.mobile = !isEmpty(data.mobile) ? data.mobile : "";
-  //   data.password = !isEmpty(data.password) ? data.password : "";
-  //   data.password_confirm = !isEmpty(data.password_confirm) ? password_confirm : "";
+  // data.name = !isEmpty(data.name) ? data.name : "";
+  // console.log("validation register js---> ", !isEmpty(data.name));
+  // data.email = !isEmpty(data.email) ? data.email : "";
+  // data.mobile = !isEmpty(data.mobile) ? data.mobile : "";
+  // data.password = !isEmpty(data.password) ? data.password : "";
+  // data.password_confirm = !isEmpty(data.password_confirm)
+  //   ? password_confirm
+  //   : "";
+
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = "name must be between 2 to 30 chars";
   }

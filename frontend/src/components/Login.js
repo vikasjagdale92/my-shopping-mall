@@ -26,10 +26,10 @@ class Login extends Component {
   };
 
   render() {
-    const { loading, errors } = this.props.allState.data;
+    const { loading, errors } = this.props.allState.errors;
 
     let val;
-    loading === "Loading..." ? (val = loading) : (val = "Login");
+    loading === "Loading..." ? (val = loading) : (val = "Sign In");
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">
@@ -46,12 +46,12 @@ class Login extends Component {
                 state={this.state.email}
                 name="email"
                 className={classnames("form-control form-control-lg", {
-                  "is-invalid": errors.email
+                  "is-invalid": errors.loginEmail
                 })}
                 onChange={this.handleChange}
               />
-              {errors.email && (
-                <div className="invalid-feedback">{errors.email}</div>
+              {errors.loginEmail && (
+                <div className="invalid-feedback">{errors.loginEmail}</div>
               )}
             </div>
 
@@ -62,12 +62,12 @@ class Login extends Component {
                 state={this.state.password}
                 name="password"
                 className={classnames("form-control form-control-lg", {
-                  "is-invalid": errors.password
+                  "is-invalid": errors.loginPassword
                 })}
                 onChange={this.handleChange}
               />
-              {errors.password && (
-                <div className="invalid-feedback">{errors.password}</div>
+              {errors.loginPassword && (
+                <div className="invalid-feedback">{errors.loginPassword}</div>
               )}
             </div>
 
