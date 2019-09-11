@@ -54,4 +54,14 @@ code {
 .input-box-wrap .form-control {
   border-radius: 0px;
 }
+.addItemsIcon {
+  float: right;
+  font-size: 20px;
+  margin-top: -5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.addItemsIcon a:hover {
+  text-decoration: none;
+}
 /*---------------- register page -------------------*/

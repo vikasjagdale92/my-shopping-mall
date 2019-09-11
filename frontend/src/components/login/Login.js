@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginUser } from "../actions";
+import { loginUser } from "../../actions";
 import classnames from "classnames";
+import Button from "../Button";
 
 class Login extends Component {
   constructor() {
@@ -26,10 +27,10 @@ class Login extends Component {
   };
 
   render() {
-    const { loading, errors } = this.props.allState.errors;
-
+    const { status, errors } = this.props.allState.errors;
+    console.log("loading --> ", status);
     let val;
-    loading === "Loading..." ? (val = loading) : (val = "Sign In");
+    status ? (val = " loading...") : (val = "Sign In");
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">
@@ -49,6 +50,7 @@ class Login extends Component {
                   "is-invalid": errors.loginEmail
                 })}
                 onChange={this.handleChange}
+                autoFocus
               />
               {errors.loginEmail && (
                 <div className="invalid-feedback">{errors.loginEmail}</div>
@@ -71,15 +73,15 @@ class Login extends Component {
               )}
             </div>
 
-            <button type="submit" className="form-control btn btn-primary">
-              {val}
-            </button>
-            <button type="button" className="form-control btn btn-link">
+            <Button text={val} />
+            <Button btnType="button" BTClass="link form-control" text="">
               <Link to="/register">Create new account</Link>
-            </button>
-            <button type="button" className="form-control btn btn-link">
-              Forgot password
-            </button>
+            </Button>
+            <Button
+              btnType="button"
+              text="Forgot Password"
+              BTClass="link form-control"
+            />
           </form>
         </div>
       </div>

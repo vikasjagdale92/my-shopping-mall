@@ -1,4 +1,4 @@
-import { LOADING } from "../constants/index.js";
+import { LOADINGFALSE, LOADINGTRUE } from "../constants/index.js";
 import { GET_ERRORS } from "../constants/index.js";
 
 const initialState = {
@@ -14,8 +14,12 @@ export const errorReducer = (state = initialState, action) => {
         errors: action.payload
       };
     }
-    case LOADING: {
-      return { ...state, status: LOADING };
+    case LOADINGTRUE: {
+      return { ...state, status: LOADINGTRUE };
+    }
+
+    case LOADINGFALSE: {
+      return { ...state, status: LOADINGFALSE };
     }
     default: {
       return state;

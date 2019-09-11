@@ -1,14 +1,12 @@
 // import { New_USER } from "../constants";
-import { LOADING } from "../constants";
+import { LOADINGTRUE } from "../constants";
 import { GET_ERRORS } from "../constants";
-import { EXISTING_USER } from "../constants";
-import axios from "axios";
-const instance = axios.create({
-  baseURL: "http://localhost:5000"
-});
+// import { EXISTING_USER } from "../constants";
+// import axios from "axios";
+import { instance } from "../instance";
 
 export const regitserUser = (data, history) => dispatch => {
-  dispatch({ type: LOADING });
+  dispatch({ type: LOADINGTRUE });
   instance
     .post("/api/users/register", data)
     .then(res => {
@@ -22,7 +20,7 @@ export const regitserUser = (data, history) => dispatch => {
 };
 
 export const loginUser = (data, history) => dispatch => {
-  dispatch({ type: LOADING });
+  dispatch({ type: LOADINGTRUE });
   instance
     .post("/api/users/login", data)
     .then(res => {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { regitserUser } from "../actions";
+import { regitserUser } from "../../actions";
 import classnames from "classnames";
 
 class Register extends Component {
@@ -32,7 +32,7 @@ class Register extends Component {
   render() {
     const { loading, errors } = this.props.allState.errors;
     let val;
-    loading === "Loading..." ? (val = loading) : (val = "Sign Up");
+    loading ? (val = loading) : (val = "Sign Up");
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">
