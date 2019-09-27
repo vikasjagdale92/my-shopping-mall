@@ -2,10 +2,14 @@ import React, { Component } from "react";
 
 class Button extends Component {
   render() {
-    const { btnType, text, BTClass } = this.props;
+    const { btnType, text, BTClass, margin } = this.props;
     return (
       <div>
-        <button type={btnType} className={`btn btn-${BTClass}  `}>
+        <button
+          type={btnType}
+          className={`btn btn-${BTClass}`}
+          style={{ margin: margin }}
+        >
           {text}
           {this.props.children}
         </button>
@@ -18,7 +22,8 @@ class Button extends Component {
 Button.defaultProps = {
   btnType: "submit",
   text: "Submit",
-  BTClass: "primary col-lg form-control"
+  BTClass: "primary col-lg form-control",
+  margin: "0px 0px 0px 0px"
 };
 
 export default Button;

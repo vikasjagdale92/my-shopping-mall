@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 
+import Carousel from "../common/Carousel";
+import SearchBar from "../common/SearchBar";
+import ShowProducts from "../forms/ShowProducts";
+
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <h3>Welcome on My shopping mall !!!</h3>
+        <SearchBar />
+        <Carousel />
+        <ShowProducts />
       </div>
     );
   }

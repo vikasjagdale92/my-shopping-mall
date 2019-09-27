@@ -41,9 +41,7 @@ class AddProductTypes extends Component {
   }
 
   render() {
-    const { status } = this.props;
-    let val;
-    status ? (val = "loading...") : (val = "Add");
+    const { errors } = this.props.allState.errors;
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">
@@ -55,13 +53,16 @@ class AddProductTypes extends Component {
                 value={this.state.productType}
                 name="productType"
                 className={classnames("form-control form-control-lg", {
-                  "is-invalid": ""
+                  "is-invalid": errors.productType
                 })}
                 onChange={this.handleChange}
                 autoFocus
               />
+              {errors.productType && (
+                <div className="invalid-feedback">{errors.productType}</div>
+              )}
             </div>
-            <Button btnType="submit" text={val} />
+            <Button btnType="submit" text="Add" />
           </form>
         </div>
       </div>
@@ -71,8 +72,7 @@ class AddProductTypes extends Component {
 
 const mapStateToProps = state => {
   return {
-    status: state.errors.status,
-    formValues: state.formData.formValues
+    allState: state
   };
 };
 

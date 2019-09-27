@@ -25,6 +25,9 @@ const addProducts = new Schema({
   productPrize: {
     type: Number
   },
+  productType: {
+    type: String
+  },
   productDiscount: {
     type: String
   },

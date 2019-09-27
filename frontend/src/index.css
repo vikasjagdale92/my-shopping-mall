@@ -26,13 +26,21 @@ code {
   margin-bottom: 10px !important;
 }
 .my-shopping-wrapper-reg {
-  padding: 15px;
+  /* padding: 15px;
+  display: table;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; */
+  padding: 60px 15px;
   display: table;
   position: absolute !important;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 .form-wrapper {
   display: table-cell;
@@ -64,4 +72,87 @@ code {
 .addItemsIcon a:hover {
   text-decoration: none;
 }
+
+.carousel-indicators-ul li {
+  list-style-type: none !important;
+}
+
+.carousel-item-msm img {
+  /* filter: brightness(60%) blur(0px) contrast(2); */
+  filter: brightness(60%) blur(0px);
+}
+
+/* Styles for wrapping the search box */
+
+.main {
+  width: 50%;
+  margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+/* Navbar css */
+.navbar-msm {
+  background: #232f3e !important;
+  justify-content: start !important;
+  z-index: 999;
+}
+.navbar-brand-msm {
+  margin-left: 15px;
+}
+.page-footer {
+  background: #232f3e;
+  color: #fff;
+  bottom: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+.cybageCart-wrap {
+  position: absolute;
+  right: 15px;
+}
+.cybageCart {
+  color: #ffc107;
+  font-size: 30px !important;
+}
+
+/* My profile */
+.profile-background-wrap {
+  background-image: url("/images/backgroungProfile.jpg");
+  height: 180px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.profile-photo-wrap {
+  text-align: center;
+  margin-top: -60px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.profile-photo-wrap img {
+  border-radius: 100px;
+  width: 130px;
+  height: 130px;
+}
+.Profile-fields label {
+  font-weight: bold;
+}
+
 /*---------------- register page -------------------*/

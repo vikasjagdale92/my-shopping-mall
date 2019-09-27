@@ -1,66 +1,67 @@
 import React, { Component } from "react";
 import { instance } from "../../instance";
-import { Link } from "react-router-dom";
-
 class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productTypesArr: []
+      productArr: []
     };
   }
-
   componentDidMount() {
-    instance.get("/api/productTypes/getProductTypes").then(res => {
-      this.setState({
-        productTypesArr: res.data,
-        productType: ""
+    instance
+      .post("/api/products/productList")
+      .then(res => {
+        this.setState({
+          productArr: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
-    });
   }
-
-  handleChange = event => {
-    this.setState(
-      {
-        [event.target.name]: event.target.value
-      },
-      () => {
-        this.props.getProductType(this.state.productType);
-      }
-    );
-  };
-
   render() {
-    const { selectText } = this.props;
-    let productTypes = this.state.productTypesArr;
-    // let show;
-    // productTypes.length > 0 ? (show = false) : (show = true);
+    const { productArr } = this.state;
     return (
-      <div>
-        <div className="input-box-wrap form-group">
-          <label className="textInput-label">Select {selectText}</label>
-          <span className="addItemsIcon">
-            <Link to="/addProductTypes" title="Click to add product types">
-              +
-            </Link>{" "}
-          </span>
-          <select
-            className="form-control"
-            name="productType"
-            value={this.state.productType}
-            onInput={this.handleChange}
-          >
-            {productTypes.map((val, index) => {
-              return <option key={index}>{val.productType}</option>;
-            })}
-          </select>
-        </div>
+      <div style={{ marginTop: "20px" }} className="col-lg-8 offset-lg-2">
+        <table className="table table-striped">
+          <thead>
+            <tr style={{ background: "#007bff", color: "#fff" }}>
+              <th>Product Name</th>
+              <th>Description</th>
+              <th>Prize</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          {productArr.length > 0 ? (
+            <tbody>
+              {productArr.map((product, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{product.productName}</td>
+                    <td>{product.productShortDescription}</td>
+                    <td>{product.productPrize}</td>
+                    <td>
+                      <button className="btn btn-primary btn-sm">Edit</button>{" "}
+                      <button className="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          ) : (
+            <tbody>
+              <tr>
+                <th colSpan="5" style={{ textAlign: "center", color: "red" }}>
+                  {" "}
+                  Nothing to display{" "}
+                </th>
+              </tr>
+            </tbody>
+          )}
+        </table>
       </div>
     );
   }
 }
-ProductList.defaultProps = {
-  selectText: ""
-};
 
 export default ProductList;

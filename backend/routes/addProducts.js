@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 const AddProducts = require("../models/AddProducts");
 const ProductTypes = require("../models/ProductTypes");
+const validateAddProductInputs = require("../validation/addProducts");
+const validateAddProductTypeInputs = require("../validation/addProductType");
 
 router.post("/addProducts", (req, res) => {
   const {
@@ -12,10 +14,17 @@ router.post("/addProducts", (req, res) => {
     productShortDescription,
     productLongDescription,
     IsActive,
-    productTypes,
+    productType,
     productPrize,
     productDiscount
   } = req.body;
+  // console.log(req.body);
+
+  const { errors, isValid } = validateAddProductInputs(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   AddProducts.findOne({
     productName
@@ -48,7 +57,7 @@ router.post("/addProducts", (req, res) => {
         productShortDescription,
         productLongDescription,
         IsActive,
-        productTypes,
+        productType,
         productPrize,
         productDiscount
       });
@@ -63,6 +72,11 @@ router.post("/addProducts", (req, res) => {
 
 router.post("/addProductTypes", (req, res) => {
   const { productType } = req.body;
+  const { errors, isValid } = validateAddProductTypeInputs(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   ProductTypes.findOne({ productType: req.body.productType }).then(
     productTypeExist => {
       if (productTypeExist) {
@@ -86,6 +100,14 @@ router.post("/addProductTypes", (req, res) => {
 router.get("/getProductTypes", (req, res) => {
   ProductTypes.find({}).then(allProductType => {
     return res.json(allProductType);
+  });
+});
+
+//product list
+
+router.post("/productList", (req, res) => {
+  AddProducts.find({}).then(allProduct => {
+    return res.json(allProduct);
   });
 });
 

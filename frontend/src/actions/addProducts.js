@@ -1,6 +1,10 @@
 // import axios from "axios";
-import { LOADINGTRUE, LOADINGFALSE } from "../constants";
-import { FORM_SUBMIT } from "../constants";
+import {
+  LOADINGTRUE,
+  LOADINGFALSE,
+  GET_ERRORS,
+  FORM_SUBMIT
+} from "../constants";
 
 // const instance = axios.create({
 //   baseURL: "http://localhost:5000"
@@ -9,23 +13,23 @@ import { FORM_SUBMIT } from "../constants";
 import { instance } from "../instance";
 
 export const addProducts = data => dispatch => {
+  // console.log(data);
   dispatch({
-    type: LOADINGTRUE
+    type: LOADINGTRUE // show loading... keyword on button
   });
   instance
     .post("/api/products/addProducts", data)
     .then(res => {
-      // console.log("res---->", res);
       dispatch({
-        type: FORM_SUBMIT,
+        type: FORM_SUBMIT, // after saving data set formValue true so in client side I can set all value to empty check AddProducts.js
         payload: true
       });
       dispatch({
-        type: LOADINGFALSE
+        type: LOADINGFALSE // hide loading... keyword on button
       });
     })
-    .then(err => {
-      console.log(err);
+    .catch(err => {
+      dispatch({ type: GET_ERRORS, payload: err.response.data });
     });
 };
 
@@ -38,13 +42,13 @@ export const addProductTypes = data => dispatch => {
     .then(res => {
       dispatch({
         type: FORM_SUBMIT,
-        payload: true
+        payload: false
       });
       dispatch({
-        type: LOADINGFALSE
+        type: LOADINGFALSE // hide loading... keyword on button
       });
     })
     .catch(err => {
-      console.log("err ---> ", err.response.data);
+      dispatch({ type: GET_ERRORS, payload: err.response.data });
     });
 };

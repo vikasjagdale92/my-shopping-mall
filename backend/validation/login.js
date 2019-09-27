@@ -19,7 +19,6 @@ const validateLoginInput = data => {
   if (isEmpty(data.password)) {
     errors.loginPassword = "password is required";
   }
-  console.log("errors ----> --------> ", errors);
   return {
     errors,
     isValid: isEmpty(errors)

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions";
 import classnames from "classnames";
 import Button from "../Button";
+import SweetAlert from "../common/SweetAlert";
 
 class Login extends Component {
   constructor() {
@@ -27,10 +28,11 @@ class Login extends Component {
   };
 
   render() {
-    const { status, errors } = this.props.allState.errors;
-    console.log("loading --> ", status);
+    const { errors } = this.props.allState.errors;
+    const { formValues } = this.props.allState.errors.status;
     let val;
-    status ? (val = " loading...") : (val = "Sign In");
+    formValues ? (val = " Loading...") : (val = "Sign In");
+
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">
@@ -60,7 +62,7 @@ class Login extends Component {
             <div className="input-box-wrap">
               <span className="textInput-label">Enter password</span>
               <input
-                type="text"
+                type="password"
                 state={this.state.password}
                 name="password"
                 className={classnames("form-control form-control-lg", {
@@ -84,6 +86,7 @@ class Login extends Component {
             />
           </form>
         </div>
+        {formValues ? <SweetAlert text="Login Successfully !!!" /> : ""}
       </div>
     );
   }

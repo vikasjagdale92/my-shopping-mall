@@ -1,8 +1,6 @@
-// import { New_USER } from "../constants";
-import { LOADINGTRUE } from "../constants";
+import { LOADINGTRUE, FORM_SUBMIT, LOADINGFALSE } from "../constants";
 import { GET_ERRORS } from "../constants";
-// import { EXISTING_USER } from "../constants";
-// import axios from "axios";
+
 import { instance } from "../instance";
 
 export const regitserUser = (data, history) => dispatch => {
@@ -10,6 +8,7 @@ export const regitserUser = (data, history) => dispatch => {
   instance
     .post("/api/users/register", data)
     .then(res => {
+      dispatch({ type: LOADINGFALSE });
       history.push("/login");
       // dispatch({ type: New_USER, payload: res.data });
     })
@@ -24,7 +23,12 @@ export const loginUser = (data, history) => dispatch => {
   instance
     .post("/api/users/login", data)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
+      dispatch({
+        type: FORM_SUBMIT,
+        payload: true
+      });
+      dispatch({ type: LOADINGFALSE });
       history.push("/homepage");
     })
     .catch(err => {
@@ -37,7 +41,7 @@ export const checkErrorMsg = data => dispatch => {
   instance
     .post("/api/users/checkErrors", data)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
     })
     .catch(err => {
       dispatch({ type: GET_ERRORS, payload: err.response.data });

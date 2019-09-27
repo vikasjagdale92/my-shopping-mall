@@ -11,7 +11,7 @@ const passport = require("passport");
 const User = require("../models/User");
 
 router.post("/register", (req, res) => {
-  console.log("sign up buuton cliecked --> ", req.body);
+  // console.log("sign up buuton cliecked --> ", req.body);
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProductList from "./ProductList";
+import ProductTypeList from "./ProductTypeList";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import Button from "../Button";
@@ -48,8 +48,7 @@ class AddProducts extends Component {
   }
 
   render() {
-    const { status } = this.props;
-    console.log(status);
+    const { errors } = this.props.allErrorsState;
     return (
       <div className="col-lg-4 offset-lg-4 col-md-4 offset-md-4 my-shopping-wrapper-reg">
         <div className="col-lg form-wrapper">
@@ -61,11 +60,14 @@ class AddProducts extends Component {
                 value={this.state.productName}
                 name="productName"
                 className={classnames("form-control form-control-lg", {
-                  "is-invalid": ""
+                  "is-invalid": errors.productName
                 })}
                 onChange={this.handleChange}
                 autoFocus
               />
+              {errors.productName && (
+                <div className="invalid-feedback">{errors.productName}</div>
+              )}
             </div>
 
             <div className="input-box-wrap form-group">
@@ -78,11 +80,10 @@ class AddProducts extends Component {
                   "is-invalid": ""
                 })}
                 onChange={this.handleChange}
-                autoFocus
               />
             </div>
 
-            <ProductList
+            <ProductTypeList
               selectText="Product Type"
               getProductType={this.getProductTypeFun}
             />
@@ -97,7 +98,6 @@ class AddProducts extends Component {
                   "is-invalid": ""
                 })}
                 onChange={this.handleChange}
-                autoFocus
               />
             </div>
 
@@ -113,7 +113,6 @@ class AddProducts extends Component {
                   "is-invalid": ""
                 })}
                 onChange={this.handleChange}
-                autoFocus
               />
             </div>
 
@@ -129,10 +128,9 @@ class AddProducts extends Component {
                   "is-invalid": ""
                 })}
                 onChange={this.handleChange}
-                autoFocus
               />
             </div>
-            <Button text={status ? status : "Add Product"} />
+            <Button text="Add Product" />
           </form>
         </div>
       </div>
@@ -143,7 +141,7 @@ class AddProducts extends Component {
 const mapStateToProps = state => {
   // console.log(state);
   return {
-    status: state.errors.status,
+    allErrorsState: state.errors,
     formValues: state.formData.formValues
   };
 };
