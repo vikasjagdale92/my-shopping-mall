@@ -4,7 +4,7 @@ import classnames from "classnames";
 import { connect } from "react-redux";
 import Button from "../Button";
 import { addProducts } from "../../actions/addProducts";
-
+//commit msg
 class AddProducts extends Component {
   constructor(props) {
     super(props);
